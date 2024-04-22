@@ -19,7 +19,7 @@ class xMENSNOMEDLinker(Classifier):
     def predict(self, cas: Cas, layer: str, feature: str, project_id: str, document_id: str, user_id: str):
         self.last_cas = cas
         # For every annotated SNOMED span, predict the SNOMED code
-        for s in cas.select('webanno.custom.SNOMED'):
+        for s in cas.select(layer):
             text = s.get_covered_text()
             pred = self.linker.predict_no_context(text)
             for concept in pred['normalized'][0:self.top_k]:
