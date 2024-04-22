@@ -1,0 +1,2 @@
+git+https://github.com/inception-project/inception-external-recommender.git
+xmen==1.0.7
