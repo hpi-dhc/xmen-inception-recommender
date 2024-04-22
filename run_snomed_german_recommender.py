@@ -10,7 +10,7 @@ from xmen.linkers import default_ensemble
 from xmen.linkers import EntityLinker
 
 class xMENSNOMEDLinker(Classifier):
-    def __init__(self, linker: EntityLinker, top_k = 10):
+    def __init__(self, linker: EntityLinker, top_k = 3):
         self.last_cas = None
         self.linker = linker
         self.top_k = top_k        
