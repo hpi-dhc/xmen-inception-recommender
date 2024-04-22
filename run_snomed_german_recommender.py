@@ -20,7 +20,7 @@ class xMENSNOMEDLinker(Classifier):
         self.last_cas = cas
         # For every annotated SNOMED span, predict the SNOMED code
         
-        annos = cas.select(layer)
+        annos = [anno for anno in cas.select(layer) if not anno['concept']]
         preds = self.linker.predict_no_context([anno.get_covered_text() for anno in annos])
 
         for anno, pred in zip(annos, preds):
