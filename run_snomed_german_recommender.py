@@ -24,21 +24,20 @@ class xMENSNOMEDLinker(Classifier):
         for anno, pred in zip(annos, preds):
             for concept in pred['normalized'][0:self.top_k]:
                 sctid = concept['db_id']
-                prediction = create_span_prediction(cas, layer, feature, anno.begin, anno.end, f"http://snomed.info/id/{sctid}", score=concept['score'])
+                score = concept['score']
+                prediction = create_span_prediction(cas, layer, feature, anno.begin, anno.end, f"http://snomed.info/id/{sctid}", score=score)
                 cas.add(prediction)     
 
 def run():
     parser = argparse.ArgumentParser()
     parser.add_argument('index_base_path', type=Path)
     parser.add_argument('--gpu', action=argparse.BooleanOptionalAction)
+    
     args = parser.parse_args()
-    index_base_path = args.index_base_path
-    linker = default_ensemble(index_base_path, cuda=args.gpu)
-  
-    recommender = xMENSNOMEDLinker(linker)
+    linker = default_ensemble(args.index_base_path, cuda=args.gpu)
 
     server = Server()
-    server.add_classifier("xmen_snomed", recommender)
+    server.add_classifier("xmen_snomed", xMENSNOMEDLinker(linker))
 
     server.start()
 
