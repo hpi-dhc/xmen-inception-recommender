@@ -1,4 +1,4 @@
-# xMEN Based Entity Linking Recommender for INCEpTION
+# Cross-lingual Medical Entity Linking Recommenders for INCEpTION
 
 Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pipelines as recommenders for (biomedical) entity linking in [INCePTION](https://github.com/inception-project/inception).
 
