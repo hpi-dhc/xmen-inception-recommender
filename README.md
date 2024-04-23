@@ -2,7 +2,7 @@
 
 Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pipelines as recommenders for (biomedical) entity linking in [INCePTION](https://github.com/inception-project/inception).
 
-## German SNOMED Linking
+## German SNOMED CT Linking
 
 ![External Recommender](assets/recommender.png)
 
