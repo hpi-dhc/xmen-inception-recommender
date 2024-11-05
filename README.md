@@ -12,15 +12,16 @@ Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pip
 
 ### Prepare xMEN KB and index:
 
-**Option 1 (more flexible)**: 
+**Option 1 (faster)**:
+- Download pre-computed xMEN index and extract contents into `xmen_index`:
+    - [HPI Nextcloud Link](https://nextcloud.hpi.de/s/LQM7s5oWGnoHRJ6) (password: name of this repository)
+
+**Option 2 (more flexible)**: 
 - Create xMEN files from scratch (takes about 1 hour with a GPU)
     - `git clone https://github.com/hpi-dhc/xmen`
     - `xmen dict snomed_german.yaml --code xmen/examples/dicts/umls_source.py`
     - `xmen index snomed_german.yaml --all --overwrite`
 
-**Option 2 (faster)**:
-- Download pre-computed xMEN index and extract contents into `xmen_index`:
-    - [HPI Nextcloud Link](https://nextcloud.hpi.de/s/LQM7s5oWGnoHRJ6) (password: name of this repository)
 
 ### Run the recommender
 
