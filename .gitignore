@@ -1,6 +1,7 @@
 xmen_index
 xmen
 *.zip
+biomedical
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
