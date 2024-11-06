@@ -9,9 +9,10 @@ from ariadne.contrib.inception_util import create_span_prediction
 from xmen.linkers import default_ensemble
 from xmen.linkers import EntityLinker
 
+from utils import handle_dates
+
 class xMENSNOMEDLinker(Classifier):
     def __init__(self, linker: EntityLinker, top_k = 3):
-        self.last_cas = None
         self.linker = linker
         self.top_k = top_k        
         super().__init__()
@@ -21,7 +22,8 @@ class xMENSNOMEDLinker(Classifier):
         annos = [anno for anno in cas.select(layer) if not anno[feature] and not anno['literal']]
         if not annos:
             return
-        preds = self.linker.predict_no_context([anno.get_covered_text() for anno in annos])
+        preds_ = self.linker.predict_no_context([anno.get_covered_text() for anno in annos])
+        preds = handle_dates(preds_)
 
         for anno, pred in zip(annos, preds):
             for concept in pred['normalized'][0:self.top_k]:
