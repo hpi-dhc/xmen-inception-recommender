@@ -24,6 +24,7 @@ class xMENSNOMEDLinker(Classifier):
             return
         preds_ = self.linker.predict_no_context([anno.get_covered_text() for anno in annos])
         preds = handle_dates(preds_)
+        # TODO: support re-ranking (see GraSCCo_Evaluation.ipynb)
 
         for anno, pred in zip(annos, preds):
             for concept in pred['normalized'][0:self.top_k]:
