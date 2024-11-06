@@ -19,7 +19,7 @@ class xMENSNOMEDLinker(Classifier):
         
     def predict(self, cas: Cas, layer: str, feature: str, project_id: str, document_id: str, user_id: str):
         # For every annotated SNOMED span, predict the SNOMED code        
-        annos = [anno for anno in cas.select(layer) if not anno[feature] and not anno['literal']]
+        annos = [anno for anno in cas.select(layer) if not anno[feature]]
         if not annos:
             return
         preds_ = self.linker.predict_no_context([anno.get_covered_text() for anno in annos])
