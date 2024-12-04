@@ -8,8 +8,8 @@ Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pip
 
 ### With Docker
 
-- `docker build -t xmen-inception`
-- ``
+- `docker build -t inception-xmen-snomed .`
+- `docker run -m=12g -p 5002:5000 -v "$(pwd)"/xmen_index/index:/index/ inception-xmen-snomed`
 
 ### Without Docker
 
