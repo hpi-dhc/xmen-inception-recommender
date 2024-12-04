@@ -9,6 +9,9 @@ from ariadne.contrib.inception_util import create_span_prediction
 from xmen.linkers import default_ensemble
 from xmen.linkers import EntityLinker
 
+import warnings
+from sklearn.exceptions import InconsistentVersionWarning
+
 from utils import handle_dates
 
 class xMENSNOMEDLinker(Classifier):
@@ -37,14 +40,19 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument('index_base_path', type=Path)
     parser.add_argument('--gpu', action=argparse.BooleanOptionalAction)
+    parser.add_argument('--port', type=int, default=5000)
+    parser.add_argument('--num_recs', type=int, default=3)
     
     args = parser.parse_args()
+    
+    # Suppress InconsistentVersionWarning from TF-IDF vectorizer
+    warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
     linker = default_ensemble(args.index_base_path, cuda=args.gpu)
 
     server = Server()
-    server.add_classifier("xmen_snomed", xMENSNOMEDLinker(linker))
+    server.add_classifier("xmen_snomed", xMENSNOMEDLinker(linker, top_k=args.num_recs))
 
-    server.start()
+    server.start(port=args.port)
 
 if __name__ == '__main__':
     run()
