@@ -6,11 +6,18 @@ Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pip
 
 ![External Recommender](assets/recommender.png)
 
-### Install dependencies
+### With Docker
+
+- `docker build -t xmen-inception`
+- ``
+
+### Without Docker
+
+#### Install dependencies
 
 - `pip install -r requirements.txt` (see [here](https://github.com/hpi-dhc/xmen/issues/37) for known issues during installation of `xmen`)
 
-### Prepare xMEN KB and index
+#### Prepare xMEN KB and index
 
 **Option 1 (faster)**:
 - Download pre-computed xMEN index and extract contents into `xmen_index`:

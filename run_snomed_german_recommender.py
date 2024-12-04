@@ -31,6 +31,7 @@ class xMENSNOMEDLinker(Classifier):
 
         for anno, pred in zip(annos, preds):
             for concept in pred['normalized'][0:self.top_k]:
+                print(concept)
                 sctid = concept['db_id']
                 score = concept['score']
                 prediction = create_span_prediction(cas, layer, feature, anno.begin, anno.end, f"http://snomed.info/id/{sctid}", score=score)
