@@ -2,33 +2,28 @@
 
 Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pipelines as recommenders for (biomedical) entity linking in [INCEpTION](https://github.com/inception-project/inception).
 
-## German SNOMED CT Linking
-
 ![External Recommender](assets/recommender.png)
 
-### With Docker
+## German SNOMED CT Quickstart (with Docker)
 
-- `docker build -t inception-xmen-snomed .`
-- `docker run -m=12g -p 5002:5000 -v "$(pwd)"/xmen_index/index:/index/ inception-xmen-snomed`
-
-### Without Docker
-
-#### Install dependencies
-
-- `pip install -r requirements.txt` (see [here](https://github.com/hpi-dhc/xmen/issues/37) for known issues during installation of `xmen`)
-
-#### Prepare xMEN KB and index
-
-**Option 1 (faster)**:
-- Download pre-computed xMEN index and extract contents into `xmen_index`:
+- Download pre-computed xMEN index for SNOMED CT and extract contents into `xmen_index`:
     - [HPI Nextcloud Link](https://nextcloud.hpi.de/s/LQM7s5oWGnoHRJ6) (password: name of this repository)
 
-**Option 2 (more flexible)**: 
-- Create xMEN files from scratch (takes about 1 hour with a GPU)
+- `docker run -m=12g -p 5000:5000 -v "$(pwd)"/xmen_index/index:/index/ ghcr.io/hpi-dhc/xmen-inception-recommender:main`
+
+## Create xMEN KB and Index from Scratch
+
+- Adapt `snomed_german.yaml` as needed
+- Create KB and indices (takes about 1 hour with a GPU)
     - `git clone https://github.com/hpi-dhc/xmen`
     - `xmen dict snomed_german.yaml --code xmen/examples/dicts/umls_source.py`
     - `xmen index snomed_german.yaml --all --overwrite`
 
+## Running the Recommender without Docker
+
+### Install dependencies
+
+- `pip install -r requirements.txt` (see [here](https://github.com/hpi-dhc/xmen/issues/37) for known issues during installation of `xmen`)
 
 ### Run the recommender
 
