@@ -54,10 +54,10 @@ def run():
     
     # Suppress InconsistentVersionWarning from TF-IDF vectorizer
     warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
-    print("Loading xMEN SNOMED Linker...", flush=True)
+    print("Loading xMEN SNOMED Linker...")
     linker = default_ensemble(args.index_base_path, cuda=args.gpu)
 
-    print("Starting Ariadne server...", flush=True)
+    print("Starting Ariadne server...")
     server = Server()
     server.add_classifier("xmen_snomed", xMENSNOMEDLinker(linker, top_k=args.num_recs))
 

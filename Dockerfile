@@ -29,4 +29,4 @@ RUN python download_models.py
 EXPOSE 5000
 
 # Define the command to run the server with parameters
-CMD ["conda", "run", "-n", "xmen", "python3", "run_snomed_german_recommender.py", "--no-gpu", "--port", "5000", "index", "--num_recs", "10"]
+CMD ["conda", "run", "--no-capture-output", "-n", "xmen", "python3", "-u", "run_snomed_german_recommender.py", "--no-gpu", "--port", "5000", "index", "--num_recs", "10"]
