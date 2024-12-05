@@ -23,7 +23,10 @@ RUN conda install -n xmen -c conda-forge nmslib cymem murmurhash -y
 # Install pip dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Download the pre-trained models so they are cached in the Docker image
+RUN python download_models.py
+
 EXPOSE 5000
 
 # Define the command to run the server with parameters
-CMD ["conda", "run", "-n", "xmen", "python3", "run_snomed_german_recommender.py", "--no-gpu", "--port", "5000", "index"]
+CMD ["conda", "run", "-n", "xmen", "python3", "run_snomed_german_recommender.py", "--no-gpu", "--port", "5000", "index", "--num_recs", "10"]

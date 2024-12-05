@@ -14,6 +14,12 @@ from sklearn.exceptions import InconsistentVersionWarning
 
 from utils import handle_dates
 
+from transformers import logging as tf_logging
+import logging
+
+logging.basicConfig(level=logging.INFO)
+tf_logging.set_verbosity_info()
+
 class xMENSNOMEDLinker(Classifier):
     def __init__(self, linker: EntityLinker, top_k = 3):
         self.linker = linker
@@ -48,8 +54,10 @@ def run():
     
     # Suppress InconsistentVersionWarning from TF-IDF vectorizer
     warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+    print("Loading xMEN SNOMED Linker...", flush=True)
     linker = default_ensemble(args.index_base_path, cuda=args.gpu)
 
+    print("Starting Ariadne server...", flush=True)
     server = Server()
     server.add_classifier("xmen_snomed", xMENSNOMEDLinker(linker, top_k=args.num_recs))
 
