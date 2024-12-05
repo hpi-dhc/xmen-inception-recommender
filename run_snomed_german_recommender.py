@@ -14,12 +14,6 @@ from sklearn.exceptions import InconsistentVersionWarning
 
 from utils import handle_dates
 
-from transformers import logging as tf_logging
-import logging
-
-logging.basicConfig(level=logging.INFO)
-tf_logging.set_verbosity_info()
-
 class xMENSNOMEDLinker(Classifier):
     def __init__(self, linker: EntityLinker, top_k = 3):
         self.linker = linker
@@ -36,8 +30,7 @@ class xMENSNOMEDLinker(Classifier):
         # TODO: support re-ranking (see GraSCCo_Evaluation.ipynb)
 
         for anno, pred in zip(annos, preds):
-            for concept in pred['normalized'][0:self.top_k]:
-                print(concept)
+            for concept in pred['normalized'][0:self.top_k]:                
                 sctid = concept['db_id']
                 score = concept['score']
                 prediction = create_span_prediction(cas, layer, feature, anno.begin, anno.end, f"http://snomed.info/id/{sctid}", score=score)
