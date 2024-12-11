@@ -11,7 +11,7 @@ Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pip
 
 - `docker run -m=12g -p <PORT_NUMBER>:5000 -v "$(pwd)"/xmen_index/index:/index/ ghcr.io/hpi-dhc/xmen-inception-recommender:main`
 
-Replace <PORT_NUMBER> with the port you want to use for the external recommender in INCEpTION.
+Replace <PORT_NUMBER> with the port you want to use for the external recommender in INCEpTION. It will be available on `http://localhost:<PORT_NUMBER>/xmen_snomed`
 
 ## Create xMEN KB and Index from Scratch
 
