@@ -9,7 +9,9 @@ Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pip
 - Download pre-computed xMEN index for SNOMED CT and extract contents into `xmen_index`:
     - [HPI Nextcloud Link](https://nextcloud.hpi.de/s/LQM7s5oWGnoHRJ6) (password: name of this repository)
 
-- `docker run -m=12g -p 5000:5000 -v "$(pwd)"/xmen_index/index:/index/ ghcr.io/hpi-dhc/xmen-inception-recommender:main`
+- `docker run -m=12g -p <PORT_NUMBER>:5000 -v "$(pwd)"/xmen_index/index:/index/ ghcr.io/hpi-dhc/xmen-inception-recommender:main`
+
+Replace <PORT_NUMBER> with the port you want to use for the external recommender in INCEpTION.
 
 ## Create xMEN KB and Index from Scratch
 
