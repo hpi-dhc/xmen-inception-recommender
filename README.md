@@ -7,7 +7,7 @@ Simple integration of pre-configured [xMEN](https://github.com/hpi-dhc/xmen) pip
 ## German SNOMED CT Quickstart (with Docker)
 
 - Download pre-computed xMEN index for SNOMED CT and extract contents into `xmen_index`:
-    - [HPI Nextcloud Link](https://nextcloud.hpi.de/s/LQM7s5oWGnoHRJ6) (password: name of this repository)
+    - [HPI Nextcloud Link](https://nextcloud.hpi.de/s/sTSwLoH9qoiFSZs) (password: name of this repository)
 
 - `docker run -m=12g -p <PORT_NUMBER>:5000 -v "$(pwd)"/xmen_index/index:/index/ ghcr.io/hpi-dhc/xmen-inception-recommender:main`
 
